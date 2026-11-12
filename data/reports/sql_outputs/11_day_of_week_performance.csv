@@ -1,0 +1,7 @@
+day_of_week,day_name,is_weekend,active_calendar_days,completed_orders,total_net_revenue,avg_daily_revenue,avg_order_value
+1,Monday,False,47,3126,1584895.3,33721.18,507.0
+2,Tuesday,False,52,3554,1965703.61,37801.99,553.1
+3,Wednesday,False,53,3690,1730088.43,32643.18,468.86
+4,Thursday,False,53,4246,2108701.53,39786.82,496.63
+5,Friday,False,50,3139,1549020.68,30980.41,493.48
+7,Sunday,True,50,2204,798659.46,15973.19,362.37

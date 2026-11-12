@@ -1,0 +1,4 @@
+pareto_bucket,sku_count,pct_of_skus,bucket_revenue,pct_of_revenue
+Top 80% Revenue Drivers,831,21.9,7821774.7,79.98
+Next 15% Long-Tail,965,25.43,1468524.18,15.02
+Bottom 5% Niche,1999,52.67,489005.63,5.0

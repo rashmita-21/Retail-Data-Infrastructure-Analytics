@@ -1,0 +1,3 @@
+customer_type,total_orders,avg_lines_per_basket,avg_units_per_basket,mean_aov,median_aov,p90_aov,total_gross_sales
+Identified Customer,18532,21.19,278.01,479.56,302.57,820.77,8887208.89
+Guest / Unidentified,1427,92.63,294.62,1222.03,464.92,3058.92,1743839.85

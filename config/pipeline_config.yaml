@@ -1,0 +1,92 @@
+project:
+  name: retail-data-infrastructure-platform
+  version: 1.0.0
+  description: Retail Data Infrastructure & Analytics Platform (UCI Online Retail)
+
+dataset:
+  name: uci_online_retail
+  url: https://archive.ics.uci.edu/static/public/352/online+retail.zip
+  excel_filename: Online Retail.xlsx
+  expected_columns:
+    - InvoiceNo
+    - StockCode
+    - Description
+    - Quantity
+    - InvoiceDate
+    - UnitPrice
+    - CustomerID
+    - Country
+
+batch_simulation:
+  # Historical-data simulation: slices the historical UCI dataset by InvoiceDate
+  # into reproducible chronological daily batches plus an explicit late-arriving test batch.
+  mode: historical_simulation
+  initial_backfill_days: 300
+  incremental_batch_days: 15
+  late_arrival_sample_size: 250
+  random_seed: 42
+
+validation:
+  # Explicit data quality & business rules
+  required_columns:
+    - InvoiceNo
+    - StockCode
+    - Description
+    - Quantity
+    - InvoiceDate
+    - UnitPrice
+    - CustomerID
+    - Country
+  non_null_columns:
+    - InvoiceNo
+    - StockCode
+    - InvoiceDate
+    - Quantity
+    - UnitPrice
+    - Country
+  allow_cancellations_in_silver: true
+  allow_missing_customer_id_in_silver: true
+  reject_non_positive_unit_price: true
+  reject_zero_quantity: true
+  reject_negative_quantity_without_cancellation: true
+  deduplicate_exact_rows: true
+  special_non_product_stock_codes:
+    - POST
+    - D
+    - M
+    - BANK CHARGES
+    - PADS
+    - DOT
+    - CRUK
+    - AMAZONFEE
+    - S
+
+spark:
+  app_name: RetailPlatformETL
+  master: local[*]
+  driver_memory: 2g
+  shuffle_partitions: 8
+  timezone: UTC
+
+warehouse:
+  engine: duckdb
+  schema_name: analytics
+  tables:
+    fact: fact_sales
+    dimensions:
+      - dim_customer
+      - dim_product
+      - dim_date
+      - dim_country
+    audit: etl_batch_audit
+
+storage:
+  zones:
+    raw: data/lake/raw
+    processed: data/lake/processed
+    rejected: data/lake/rejected
+    curated: data/lake/curated
+  reports_dir: data/reports
+  state_dir: data/state
+  batches_dir: data/batches
+  source_dir: data/source

@@ -1,0 +1,6 @@
+rfm_segment,customer_count,avg_recency_days,avg_frequency_orders,avg_monetary_spend,total_segment_revenue
+Champions,481,5.9,15.5,8851.35,4257499.67
+Loyal Customers,1103,20.4,5.1,1946.65,2147151.44
+At Risk,744,83.5,3.39,1224.13,910753.16
+Hibernating / Needs Attention,1414,203.0,1.49,496.59,702183.79
+Recent / Promising,575,23.6,1.39,476.8,274160.5

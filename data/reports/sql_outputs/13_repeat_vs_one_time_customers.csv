@@ -1,0 +1,5 @@
+loyalty_tier,customer_count,pct_of_customers,total_orders,total_revenue,pct_of_revenue,avg_customer_spend
+1_One-Time (1 order),1493,34.42,1493.0,613989.56,6.91,411.25
+2_Repeat (2-4 orders),1731,39.9,4746.0,1940750.02,21.84,1121.17
+3_Frequent (5-10 orders),777,17.91,5179.0,1948503.3,21.92,2507.73
+4_VIP (11+ orders),337,7.77,7114.0,4383966.01,49.33,13008.8

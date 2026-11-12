@@ -1,0 +1,36 @@
+{
+  "Version": "2012-10-12",
+  "Statement": [
+    {
+      "Sid": "InspectRawLandingObjects",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:HeadObject"
+      ],
+      "Resource": "arn:aws:s3:::${S3_RAW_BUCKET}/batches/*"
+    },
+    {
+      "Sid": "StartRetailGlueJobs",
+      "Effect": "Allow",
+      "Action": [
+        "glue:StartJobRun",
+        "glue:GetJobRun"
+      ],
+      "Resource": [
+        "arn:aws:glue:${AWS_REGION}:${AWS_ACCOUNT_ID}:job/retail-bronze-to-silver-dq",
+        "arn:aws:glue:${AWS_REGION}:${AWS_ACCOUNT_ID}:job/retail-silver-to-gold-curated"
+      ]
+    },
+    {
+      "Sid": "LambdaCloudWatchLogs",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:${AWS_REGION}:${AWS_ACCOUNT_ID}:log-group:/aws/lambda/retail-ingestion-trigger:*"
+    }
+  ]
+}
